@@ -2,18 +2,6 @@
 
 # A sample script for calls to the API. This one creates a Jet Stream container.
 
-##### Constants
-
-# Describes a Delphix software revision.
-# Please change version are per your Delphix Engine CLI, if different
-VERSION="1.11.14"
-
-
-##### Default Values. These can be overwriten with optional arguments.
-engine="10.44.1.160"
-username="admin"
-password="fwdview01!"
-
 ##examples##
 # Create container from latest point in time
 #./createContainer.sh -n "testsource" testcont ORACLE_DB_CONTAINER-269 JS_DATA_TEMPLATE-13
@@ -266,8 +254,8 @@ done
 # Shift the parameters so we only have the positional arguments left
 shift $((OPTIND-1))
 
-# Check that there are 3 positional arguments
-if [ $# != 3 ]
+# Check that there are 7 positional arguments
+if [ $# != 7 ]
 then
 	usage
 	exit 1
@@ -279,6 +267,14 @@ shift
 VDB=$1
 shift
 template=$1
+shift
+VERSION=$1
+shift 
+engine=$1
+shift
+username=$1
+shift
+password=$1
 
 create_session
 authenticate_de
