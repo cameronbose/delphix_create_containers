@@ -7,8 +7,9 @@ versionDict = {'6.0.14.0':'1.11.14','6.0.15.0':'1.11.15','6.0.16.0':'1.11.16','6
 
 def getAPIVersion(delphixVersion):
     apiVersion = versionDict[delphixVersion]
-    major,minor,micro = apiVersion.split('.')
-    return major,minor,micro 
+    # major,minor,micro = apiVersion.split('.')
+    # return major,minor,micro 
+    return apiVersion
 
 vdbFile = open("vdbNames.txt", "r").read().splitlines()
 vdbList = [i.strip() for i in vdbFile]
@@ -38,20 +39,21 @@ if __name__ == "__main__":
     templateName = sys.argv[5]  
     sourceName = sys.argv[6]
     
-    major,minor,micro = getAPIVersion(delphixVersion)
+    dxVersion = getAPIVersion(delphixVersion)
 
-    print("logging in...")
-    os.system(f"sh login.sh {username} {password} {dxEngine} {major} {minor} {micro}")
+    # print("logging in...")
+    # os.system(f"sh login.sh {username} {password} {dxEngine} {major} {minor} {micro}")
     templateReference = getTemplateID(templateName)
 
     for vdbName in vdbList: 
         while True:
             try: 
                 vdbContainerReference = getVDBContainerID(vdbName)
-                os.system(f'sh createContainer.sh -n "{sourceName}" {vdbName} {vdbContainerReference} {templateReference}')
-                time.sleep(30)
+                os.system(f'sh createContainer.sh -n "{sourceName}" {vdbName} {vdbContainerReference} {templateReference} {dxVersion} {dxEngine} {username} {password}')
+                time.sleep(10)
             except KeyError: 
                 print("Waiting for VDB to be provisioned...")
                 time.sleep(60)
                 continue
             break 
+
