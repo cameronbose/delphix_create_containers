@@ -31,7 +31,7 @@ def getTemplateID(templateName):
 
 if __name__ == "__main__": 
     
-    version = sys.argv[1] 
+    delphixVersion = sys.argv[1] 
     dxEngine = sys.argv[2] 
     username = sys.argv[3] 
     password = sys.argv[4] 
