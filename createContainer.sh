@@ -280,6 +280,6 @@ VDB=$1
 shift
 template=$1
 
-# create_session
-# authenticate_de
+create_session
+authenticate_de
 create_container
