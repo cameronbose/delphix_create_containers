@@ -14,7 +14,7 @@ pipeline {
         
         stage('Creating Containers') { 
             steps {
-                bat "python createContainers.py ${params.dxVersion} ${params.dxEngineAddress} ${SECRET_CREDS_USR} ${SECRET_CREDS_PSW} ${params.templateName} ${params.sourceName}";    
+                bat "python createContainer.py ${params.dxVersion} ${params.dxEngineAddress} ${SECRET_CREDS_USR} ${SECRET_CREDS_PSW} ${params.templateName} ${params.sourceName}";    
             }
         } 
     }
