@@ -7,9 +7,8 @@ versionDict = {'6.0.14.0':'1.11.14','6.0.15.0':'1.11.15','6.0.16.0':'1.11.16','6
 
 def getAPIVersion(delphixVersion):
     apiVersion = versionDict[delphixVersion]
-    # major,minor,micro = apiVersion.split('.')
-    # return major,minor,micro 
-    return apiVersion
+    major,minor,micro = apiVersion.split('.')
+    return major,minor,micro 
 
 vdbFile = open("vdbNames.txt", "r").read().splitlines()
 vdbList = [i.strip() for i in vdbFile]
@@ -39,8 +38,9 @@ if __name__ == "__main__":
     templateName = sys.argv[5]  
     sourceName = sys.argv[6]
     
-    dxVersion = getAPIVersion(delphixVersion)
-
+    major,minor,micro = getAPIVersion(delphixVersion)
+    dxVersion = versionDict[delphixVersion]
+    
     print("logging in...")
     os.system(f"sh login.sh {username} {password} {dxEngine} {major} {minor} {micro}")
     templateReference = getTemplateID(templateName)
