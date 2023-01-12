@@ -50,7 +50,7 @@ if __name__ == "__main__":
             try: 
                 vdbContainerReference = getVDBContainerID(vdbName)
                 os.system(f'sh createContainer.sh -n "{sourceName}" {vdbName} {vdbContainerReference} {templateReference} {dxVersion} {dxEngine} {username} {password}')
-                time.sleep(10)
+                time.sleep(5)
             except KeyError: 
                 print("Waiting for VDB to be provisioned...")
                 time.sleep(60)
