@@ -41,8 +41,8 @@ if __name__ == "__main__":
     
     dxVersion = getAPIVersion(delphixVersion)
 
-    # print("logging in...")
-    # os.system(f"sh login.sh {username} {password} {dxEngine} {major} {minor} {micro}")
+    print("logging in...")
+    os.system(f"sh login.sh {username} {password} {dxEngine} {major} {minor} {micro}")
     templateReference = getTemplateID(templateName)
 
     for vdbName in vdbList: 
